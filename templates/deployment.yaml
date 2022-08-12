@@ -38,7 +38,9 @@ spec:
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
+                sysctls:
+                - name: net.ipv6.conf.lo.disable_ipv6
+                  value: "0"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           args:
