@@ -92,7 +92,7 @@ spec:
             value: {{ .Values.hostname }}
           readinessProbe:
             exec:
-              command: [ "/usr/bin/systemctl", "status", "ipa", "sysctl net.ipv6.conf.all.disable_ipv6=0", "sysctl net.ipv6.conf.default.disable_ipv6=0"]
+              command: [ "/usr/bin/systemctl", "status", "ipa", "/usr/bin/systemctl net.ipv6.conf.all.disable_ipv6=1", "/usr/bin/systemctl net.ipv6.conf.default.disable_ipv6=1"]
             initialDelaySeconds: 550
             timeoutSeconds: 10
             periodSeconds: 10
