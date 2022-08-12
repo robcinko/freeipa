@@ -44,9 +44,7 @@ spec:
           startupProbe:
             exec:
               command:
-              - sysctl net.ipv6.conf.all.disable_ipv6 = 1
-              - sysctl net.ipv6.conf.default.disable_ipv6 = 1
-              - nmcli connection modify interface ipv6.method ignore
+              - docker run --sysctl net.ipv6.conf.all.disable_ipv6=0
           args:
           - -U
           - --realm={{ .Values.args.realm }}
