@@ -44,7 +44,7 @@ spec:
           startupProbe:
             exec:
               command:
-              - nmcli connection modify interface ipv6.method ignore
+              [ "/usr/bin/nmcli", "connection", "modify", "interface", "ipv6.method", "ignore" ]
           args:
           - -U
           - --realm={{ .Values.args.realm }}
