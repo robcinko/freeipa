@@ -41,12 +41,9 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          startupProbe:
-            exec:
-              command:
-              - "touch /etc/sysconfig/network-scripts/ifcfg-lo:0", "echo "DEVICE=lo:0" >> /etc/sysconfig/network-scripts/ifcfg-lo:0", "echo "NAME=lo:0" >> /etc/sysconfig/network-scripts/ifcfg-lo:0", "BOOTPROTO=none" >> /etc/sysconfig/network-scripts/ifcfg-lo:0", "echo "ONBOOT=yes" >> /etc/sysconfig/network-scripts/ifcfg-lo:0"
           args:
           - -U
+          - --sysctl net.ipv6.conf.lo.disable_ipv6=0
           - --realm={{ .Values.args.realm }}
           - --domain={{ .Values.args.domain }}
           - --ds-password={{ .Values.args.dspassword }}
