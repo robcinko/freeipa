@@ -44,7 +44,7 @@ spec:
           startupProbe:
             exec:
               command:
-              - "touch /etc/sysctl.d/70-ipv6.conf", "echo "net.ipv6.conf.all.disable_ipv6 = 1" >> /etc/sysctl.d/70-ipv6.conf", "echo "net.ipv6.conf.default.disable_ipv6 = 1" >> /etc/sysctl.d/70-ipv6.conf", "sysctl --load /etc/sysctl.d/70-ipv6.conf"
+              - "touch /etc/sysconfig/network-scripts/ifcfg-lo:0", "echo "DEVICE=lo:0" >> /etc/sysconfig/network-scripts/ifcfg-lo:0", "echo "NAME=lo:0" >> /etc/sysconfig/network-scripts/ifcfg-lo:0", "BOOTPROTO=none" >> /etc/sysconfig/network-scripts/ifcfg-lo:0", "echo "ONBOOT=yes" >> /etc/sysconfig/network-scripts/ifcfg-lo:0"
           args:
           - -U
           - --realm={{ .Values.args.realm }}
